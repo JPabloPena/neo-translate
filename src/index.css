@@ -7,4 +7,17 @@
   --color-primary: #fff;
   --color-secondary: #a1a1aa;
   --color-tertiary: #ffffffeb;
+  --color-accent: rgb(34, 34, 34);
+}
+
+.lang-button {
+  @apply px-4 py-2 rounded-xl font-semibold border-2 border-transparent hover:border-accent hover:cursor-pointer transition-colors;
+}
+
+.change-lang-button {
+  @apply appearance-none pl-4 pr-7 py-2 rounded-xl font-semibold border-2 border-transparent hover:border-accent hover:cursor-pointer transition-colors;
+}
+
+.action-button {
+  @apply p-2 rounded-xl font-semibold border-1 border-secondary opacity-80 h-fit hover:cursor-pointer hover:bg-accent transition-colors;
 }
