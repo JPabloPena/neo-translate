@@ -8,8 +8,10 @@ import debounce from 'just-debounce-it'
 function TranslatorInput () {
   const { toTranslate, setToTranslate, toTranslateLang, setToTranslateLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState(`btn-from-${toTranslateLang}`)
+  const [translationLength, setTranslationLength] = useState(0)
   const selectRef = useRef(null)
 
+  const maxCharacters = 360
   const activeLanguageClass = 'bg-accent'
   const selectOptions = ['btn-from-fr', 'btn-from-ca']
 
@@ -41,8 +43,9 @@ function TranslatorInput () {
   )
 
   const handleTextareaChange = e => {
-    const newToTranslate = e.target.value.trim()
-    debounceTranslation(newToTranslate)
+    const newToTranslate = e.target.value
+    setTranslationLength(newToTranslate.length)
+    debounceTranslation(newToTranslate.trim())
   }
 
   useEffect(() => {
@@ -69,7 +72,7 @@ function TranslatorInput () {
       </section>
       <textarea
         placeholder='Write your text here...'
-        maxLength='500'
+        maxLength={maxCharacters}
         autoCapitalize='off'
         autoComplete='off'
         autoCorrect='off'
@@ -85,7 +88,7 @@ function TranslatorInput () {
             <Copy className='size-5' />
           </button>
         </div>
-        <p className='text-right text-secondary'>19/500</p>
+        <p className='text-right text-secondary'>{translationLength}/{maxCharacters}</p>
       </section>
     </div>
   )
