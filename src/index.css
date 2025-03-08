@@ -8,6 +8,8 @@
   --color-secondary: #a1a1aa;
   --color-tertiary: #ffffffeb;
   --color-accent: rgb(34, 34, 34);
+
+  --default-font-family: 'Inter', sans-serif;
 }
 
 .lang-button {
