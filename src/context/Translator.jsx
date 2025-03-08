@@ -12,7 +12,10 @@ function TranslatorProvider ({ children }) {
 
   useEffect(() => {
     async function fetchTranslation () {
-      if (toTranslate.length === 0) return
+      if (toTranslate.length === 0) {
+        setTranslation('')
+        return
+      }
 
       const encodedQuery = encodeURIComponent(toTranslate)
       const response = await fetch(`${API_URL}/get?q=${encodedQuery}&langpair=${toTranslateLang}|${translationLang}`)

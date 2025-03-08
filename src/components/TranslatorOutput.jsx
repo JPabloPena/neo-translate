@@ -71,7 +71,7 @@ function TranslatorOutput () {
       <textarea
         disabled
         value={translation}
-        className='w-full h-full pt-4 mb-4 text-2xl hover:cursor-text resize-none'
+        className={`w-full h-full pt-4 mb-4 text-2xl resize-none ${translation.length > 0 ? 'hover:cursor-text' : 'hover:cursor-default'}`}
       />
       <section>
         <div className='flex gap-2.5'>
