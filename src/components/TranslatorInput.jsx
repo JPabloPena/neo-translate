@@ -7,23 +7,23 @@ import debounce from 'just-debounce-it'
 
 function TranslatorInput () {
   const { toTranslate, setToTranslate, toTranslateLang, setToTranslateLang } = useContext(TranslatorContext)
-  const [activeLangButton, setActiveLangButton] = useState(`btn-to-${toTranslateLang}`)
+  const [activeLangButton, setActiveLangButton] = useState(`btn-from-${toTranslateLang}`)
   const selectRef = useRef(null)
 
   const activeLanguageClass = 'bg-accent'
-  const selectOptions = ['btn-to-fr', 'btn-to-ca']
+  const selectOptions = ['btn-from-fr', 'btn-from-ca']
 
   const handleSelectFocus = () => {
     selectRef.current.selectedIndex = 0
     selectRef.current.blur()
     setToTranslateLang('autodetect')
-    setActiveLangButton('btn-to-autodetect')
+    setActiveLangButton('btn-from-autodetect')
   }
 
   const handleActiveLanguage = e => {
     let newToTranslateActiveButton
     if (e.target.tagName === 'SELECT') {
-      newToTranslateActiveButton = `btn-to-${e.target.value}`
+      newToTranslateActiveButton = `btn-from-${e.target.value}`
     } else {
       newToTranslateActiveButton = e.target.id
     }
@@ -46,8 +46,8 @@ function TranslatorInput () {
   }
 
   useEffect(() => {
-    setActiveLangButton(`btn-to-${toTranslateLang}`)
-    if (selectOptions.includes(`btn-to-${toTranslateLang}`)) {
+    setActiveLangButton(`btn-from-${toTranslateLang}`)
+    if (selectOptions.includes(`btn-from-${toTranslateLang}`)) {
       selectRef.current.value = toTranslateLang
     }
   }, [toTranslateLang])
@@ -55,14 +55,14 @@ function TranslatorInput () {
   return (
     <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
       <section className='flex gap-5 border-b-1 border-accent pb-3'>
-        <button id='btn-to-autodetect' className={`lang-button ${activeLangButton === 'btn-to-autodetect' ? activeLanguageClass : ''}`} value='autodetect' onClick={handleActiveLanguage}>Detect Language</button>
-        <button id='btn-to-en' className={`lang-button ${activeLangButton === 'btn-to-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
-        <button id='btn-to-es' className={`lang-button ${activeLangButton === 'btn-to-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
+        <button id='btn-from-autodetect' className={`lang-button ${activeLangButton === 'btn-from-autodetect' ? activeLanguageClass : ''}`} value='autodetect' onClick={handleActiveLanguage}>Detect Language</button>
+        <button id='btn-from-en' className={`lang-button ${activeLangButton === 'btn-from-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
+        <button id='btn-from-es' className={`lang-button ${activeLangButton === 'btn-from-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
         <div className='relative items-center'>
           <select ref={selectRef} defaultValue='fr' className={`change-lang-button ${selectOptions.includes(activeLangButton) ? activeLanguageClass : ''}`} onChange={handleActiveLanguage} onFocus={handleSelectFocus}>
             <option className='bg-accent' disabled>Select</option>
-            <option id='btn-to-fr' className='bg-accent' value='fr'>French</option>
-            <option id='btn-to-ca' className='bg-accent' value='ca'>Catalan</option>
+            <option id='btn-from-fr' className='bg-accent' value='fr'>French</option>
+            <option id='btn-from-ca' className='bg-accent' value='ca'>Catalan</option>
           </select>
           <ChevronDown className='size-3 pointer-events-none absolute inset-y-4 right-3 stroke-3' />
         </div>
