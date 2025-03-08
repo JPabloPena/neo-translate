@@ -6,7 +6,7 @@ import { useContext, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
 
 function TranslatorOutput () {
-  const { setTranslationLang } = useContext(TranslatorContext)
+  const { translation, setTranslationLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState('btn-to-es')
   const selectRef = useRef(null)
 
@@ -38,9 +38,9 @@ function TranslatorOutput () {
           <button id='btn-to-en' className={`lang-button ${activeLangButton === 'btn-to-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
           <button id='btn-to-es' className={`lang-button ${activeLangButton === 'btn-to-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
           <div className='relative items-center'>
-            <select ref={selectRef} className={`change-lang-button ${selectOptions.includes(activeLangButton) ? activeLanguageClass : ''}`} onChange={handleActiveLanguage} onFocus={handleSelectFocus}>
+            <select ref={selectRef} defaultValue='fr' className={`change-lang-button ${selectOptions.includes(activeLangButton) ? activeLanguageClass : ''}`} onChange={handleActiveLanguage} onFocus={handleSelectFocus}>
               <option className='bg-accent' disabled>Select</option>
-              <option id='btn-to-fr' className='bg-accent' value='fr' selected>French</option>
+              <option id='btn-to-fr' className='bg-accent' value='fr'>French</option>
               <option id='btn-to-ca' className='bg-accent' value='ca'>Catalan</option>
             </select>
             <ChevronDown className='size-3 pointer-events-none absolute inset-y-4 right-3 stroke-3' />
@@ -52,6 +52,7 @@ function TranslatorOutput () {
       </section>
       <textarea
         disabled
+        value={translation}
         className='w-full h-full pt-4 mb-4 text-2xl resize-none'
       />
       <section>
