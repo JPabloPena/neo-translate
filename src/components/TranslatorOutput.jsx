@@ -71,14 +71,14 @@ function TranslatorOutput () {
       <textarea
         disabled
         value={translation}
-        className='w-full h-full pt-4 mb-4 text-2xl resize-none'
+        className='w-full h-full pt-4 mb-4 text-2xl hover:cursor-text resize-none'
       />
       <section>
         <div className='flex gap-2.5'>
-          <button className='action-button'>
+          <button className='action-button' disabled>
             <SpeakerWave className='size-5' />
           </button>
-          <button className='action-button'>
+          <button className='action-button' disabled>
             <Copy className='size-5' />
           </button>
         </div>

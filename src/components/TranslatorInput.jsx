@@ -78,10 +78,10 @@ function TranslatorInput () {
       />
       <section className='flex justify-between items-center'>
         <div className='flex gap-2.5'>
-          <button className='action-button'>
+          <button className='action-button' disabled>
             <SpeakerWave className='size-5' />
           </button>
-          <button className='action-button'>
+          <button className='action-button' disabled>
             <Copy className='size-5' />
           </button>
         </div>
