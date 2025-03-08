@@ -19,5 +19,5 @@
 }
 
 .action-button {
-  @apply p-2 rounded-xl font-semibold border-1 border-secondary opacity-80 h-fit hover:cursor-pointer hover:bg-accent transition-colors;
+  @apply p-2 rounded-xl font-semibold border-1 border-secondary opacity-80 h-fit hover:cursor-pointer hover:bg-accent transition-colors disabled:opacity-25 disabled:hover:bg-transparent;
 }

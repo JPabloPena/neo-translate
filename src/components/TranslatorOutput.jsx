@@ -6,7 +6,7 @@ import { useContext, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
 
 function TranslatorOutput () {
-  const { translation, setTranslationLang } = useContext(TranslatorContext)
+  const { translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState('btn-to-es')
   const selectRef = useRef(null)
 
@@ -31,6 +31,16 @@ function TranslatorOutput () {
     setTranslationLang(newToTranslateLang)
   }
 
+  const handleClickExchangeButton = () => {
+    const currentToTranslateLang = toTranslateLang
+    const currentTranslationLang = translationLang
+
+    setToTranslateLang(currentTranslationLang)
+    setTranslationLang(currentToTranslateLang)
+
+    setActiveLangButton(`btn-to-${toTranslateLang}`)
+  }
+
   return (
     <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
       <section className='flex justify-between items-center border-b-1 border-accent pb-3'>
@@ -46,7 +56,7 @@ function TranslatorOutput () {
             <ChevronDown className='size-3 pointer-events-none absolute inset-y-4 right-3 stroke-3' />
           </div>
         </div>
-        <button className='action-button'>
+        <button className='action-button' onClick={handleClickExchangeButton} disabled={toTranslateLang === 'autodetect'}>
           <Exchange className='size-5' />
         </button>
       </section>
