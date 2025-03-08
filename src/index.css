@@ -15,7 +15,7 @@
 }
 
 .change-lang-button {
-  @apply appearance-none pl-4 pr-7 py-2 rounded-xl font-semibold border-2 border-transparent hover:border-accent hover:cursor-pointer transition-colors;
+  @apply appearance-none pl-4 pr-7 py-2 rounded-xl font-semibold border-2 border-transparent hover:border-accent hover:cursor-pointer transition-colors focus:outline-none focus:border-accent;
 }
 
 .action-button {
