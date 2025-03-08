@@ -15,6 +15,8 @@ function TranslatorInput () {
 
   const handleSelectFocus = () => {
     selectRef.current.selectedIndex = 0
+    selectRef.current.blur()
+    setToTranslateLang('autodetect')
     setActiveLangButton('btn-to-autodetect')
   }
 
@@ -45,6 +47,9 @@ function TranslatorInput () {
 
   useEffect(() => {
     setActiveLangButton(`btn-to-${toTranslateLang}`)
+    if (selectOptions.includes(`btn-to-${toTranslateLang}`)) {
+      selectRef.current.value = toTranslateLang
+    }
   }, [toTranslateLang])
 
   return (

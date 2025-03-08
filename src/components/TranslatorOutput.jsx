@@ -2,7 +2,7 @@ import SpeakerWave from '../icons/SpeakerWave'
 import Copy from '../icons/Copy'
 import Exchange from '../icons/Exchange'
 import ChevronDown from '../icons/ChevronDown'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
 
 function TranslatorOutput () {
@@ -15,7 +15,9 @@ function TranslatorOutput () {
 
   const handleSelectFocus = () => {
     selectRef.current.selectedIndex = 0
-    setActiveLangButton('btn-to-autodetect')
+    selectRef.current.blur()
+    setTranslationLang('en')
+    setActiveLangButton('btn-to-en')
   }
 
   const handleActiveLanguage = e => {
@@ -40,6 +42,12 @@ function TranslatorOutput () {
 
     setActiveLangButton(`btn-to-${toTranslateLang}`)
   }
+
+  useEffect(() => {
+    if (selectOptions.includes(`btn-to-${translationLang}`)) {
+      selectRef.current.value = translationLang
+    }
+  }, [translationLang])
 
   return (
     <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
