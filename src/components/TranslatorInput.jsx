@@ -1,13 +1,13 @@
 import SpeakerWave from '../icons/SpeakerWave'
 import Copy from '../icons/Copy'
 import ChevronDown from '../icons/ChevronDown'
-import { useCallback, useContext, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
 import debounce from 'just-debounce-it'
 
 function TranslatorInput () {
-  const { toTranslate, setToTranslate, setToTranslateLang } = useContext(TranslatorContext)
-  const [activeLangButton, setActiveLangButton] = useState('btn-to-autodetect')
+  const { toTranslate, setToTranslate, toTranslateLang, setToTranslateLang } = useContext(TranslatorContext)
+  const [activeLangButton, setActiveLangButton] = useState(`btn-to-${toTranslateLang}`)
   const selectRef = useRef(null)
 
   const activeLanguageClass = 'bg-accent'
@@ -34,7 +34,6 @@ function TranslatorInput () {
   const debounceTranslation = useCallback(
     debounce(toTranslate => {
       setToTranslate(toTranslate)
-      console.log({ toTranslate })
     }, 500),
     [toTranslate]
   )
@@ -44,6 +43,10 @@ function TranslatorInput () {
     debounceTranslation(newToTranslate)
   }
 
+  useEffect(() => {
+    setActiveLangButton(`btn-to-${toTranslateLang}`)
+  }, [toTranslateLang])
+
   return (
     <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
       <section className='flex gap-5 border-b-1 border-accent pb-3'>
@@ -51,9 +54,9 @@ function TranslatorInput () {
         <button id='btn-to-en' className={`lang-button ${activeLangButton === 'btn-to-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
         <button id='btn-to-es' className={`lang-button ${activeLangButton === 'btn-to-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
         <div className='relative items-center'>
-          <select ref={selectRef} className={`change-lang-button ${selectOptions.includes(activeLangButton) ? activeLanguageClass : ''}`} onChange={handleActiveLanguage} onFocus={handleSelectFocus}>
+          <select ref={selectRef} defaultValue='fr' className={`change-lang-button ${selectOptions.includes(activeLangButton) ? activeLanguageClass : ''}`} onChange={handleActiveLanguage} onFocus={handleSelectFocus}>
             <option className='bg-accent' disabled>Select</option>
-            <option id='btn-to-fr' className='bg-accent' value='fr' selected>French</option>
+            <option id='btn-to-fr' className='bg-accent' value='fr'>French</option>
             <option id='btn-to-ca' className='bg-accent' value='ca'>Catalan</option>
           </select>
           <ChevronDown className='size-3 pointer-events-none absolute inset-y-4 right-3 stroke-3' />
