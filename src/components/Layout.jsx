@@ -8,7 +8,6 @@ function Layout () {
     <>
       <Header />
       <div className='h-screen bg-bg-primary pt-24 flex flex-col gap-5 items-center'>
-        <Header />
         <section className='flex gap-5'>
           <TranslatorInput />
           <TranslatorOutput />
