@@ -11,6 +11,7 @@
   --color-accent: rgb(34, 34, 34);
   --color-custom-black: #060606;
   --color-success: #37b51b;
+  --color-placeholder: #888888;
 
   --default-font-family: 'Inter', sans-serif;
 }
