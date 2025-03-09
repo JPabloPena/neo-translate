@@ -21,12 +21,26 @@ function TranslatorProvider ({ children }) {
 
       setIsLoading(true)
 
+      if (toTranslateLang === translationLang) {
+        setTranslation(toTranslate)
+        setIsLoading(false)
+        return
+      }
+
       const encodedQuery = encodeURIComponent(toTranslate)
       const response = await fetch(`${API_URL}/get?q=${encodedQuery}&langpair=${toTranslateLang}|${translationLang}`)
 
       if (!response.ok) throw new Error('Error searching your translation')
 
       const translationData = await response.json()
+      const { responseStatus } = translationData
+
+      if (responseStatus === '403') {
+        setTranslation(toTranslate)
+        setIsLoading(false)
+        return
+      }
+
       const { matches: [{ translation: translatedText }] } = translationData
       setTranslation(translatedText)
 
