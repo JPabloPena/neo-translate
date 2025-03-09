@@ -3,12 +3,14 @@
 @theme {
   --color-bg-primary: #060606;
   --color-bg-secondary: rgb(17, 17, 17);
+  --color-bg-success: #1a2019;
 
   --color-primary: #fff;
   --color-secondary: #a1a1aa;
   --color-tertiary: #ffffffeb;
   --color-accent: rgb(34, 34, 34);
   --color-custom-black: #060606;
+  --color-success: #37b51b;
 
   --default-font-family: 'Inter', sans-serif;
 }
@@ -27,4 +29,8 @@
 
 .action-button-white {
   @apply px-2 py-1.5 rounded-xl font-semibold border-1 bg-primary text-custom-black border-primary opacity-80 h-fit hover:cursor-pointer hover:bg-primary/90 transition-colors;
+}
+
+.success-button {
+  @apply p-2 rounded-xl font-semibold border-1 bg-bg-success border-success text-success opacity-80 h-fit hover:cursor-pointer transition-colors;
 }
