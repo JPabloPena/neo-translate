@@ -17,21 +17,24 @@
 }
 
 .loadership_UZHHE div:nth-child(1) {
-      animation-delay: 0.00s;
-      left: 0px;
-  }
+  animation-delay: 0.00s;
+  left: 0px;
+}
+
 .loadership_UZHHE div:nth-child(2) {
-      animation-delay: 0.23s;
-      left: 13px;
-  }
+  animation-delay: 0.23s;
+  left: 13px;
+}
+
 .loadership_UZHHE div:nth-child(3) {
-      animation-delay: 0.45s;
-      left: 26px;
-  }
+  animation-delay: 0.45s;
+  left: 26px;
+}
+
 .loadership_UZHHE div:nth-child(4) {
-      animation-delay: 0.68s;
-      left: 39px;
-  }
+  animation-delay: 0.68s;
+  left: 39px;
+}
 
 @keyframes loadership_UZHHE_bounce {
   0%, 10.588235294117647%, 26.47058823529412%, 42.35294117647059%, 52.94117647058824%, 100% {

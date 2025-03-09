@@ -5,7 +5,6 @@ import copyToClipboard from '../utils/copyToClipboard'
 
 function CopyToClipboard ({ text }) {
   const [isSuccess, setIsSuccess] = useState(false)
-  console.log({ text })
 
   const handleButtonClick = () => {
     if (text.length === 0) return
