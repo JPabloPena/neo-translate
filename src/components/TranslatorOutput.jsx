@@ -6,7 +6,7 @@ import { TranslatorContext } from '../context/Translator'
 import CopyToClipboard from './CopyToClipboard'
 
 function TranslatorOutput () {
-  const { translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
+  const { setToTranslateNoDebounce, translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState('btn-to-es')
   const selectRef = useRef(null)
 
@@ -34,6 +34,7 @@ function TranslatorOutput () {
   }
 
   const handleClickExchangeButton = () => {
+    // Update buttons
     const currentToTranslateLang = toTranslateLang
     const currentTranslationLang = translationLang
 
@@ -41,6 +42,10 @@ function TranslatorOutput () {
     setTranslationLang(currentToTranslateLang)
 
     setActiveLangButton(`btn-to-${toTranslateLang}`)
+
+    // Update text
+    const currentTranslation = translation
+    setToTranslateNoDebounce(currentTranslation)
   }
 
   useEffect(() => {

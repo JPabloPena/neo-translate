@@ -6,7 +6,7 @@ import debounce from 'just-debounce-it'
 import CopyToClipboard from './CopyToClipboard'
 
 function TranslatorInput () {
-  const { toTranslate, setToTranslate, toTranslateLang, setToTranslateLang } = useContext(TranslatorContext)
+  const { toTranslateNoDebounce, setToTranslateNoDebounce, toTranslate, setToTranslate, toTranslateLang, setToTranslateLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState(`btn-from-${toTranslateLang}`)
   const [translationLength, setTranslationLength] = useState(0)
   const selectRef = useRef(null)
@@ -45,6 +45,7 @@ function TranslatorInput () {
   const handleTextareaChange = e => {
     const newToTranslate = e.target.value
     setTranslationLength(newToTranslate.length)
+    setToTranslateNoDebounce(newToTranslate)
     debounceTranslation(newToTranslate.trim())
   }
 
@@ -72,6 +73,7 @@ function TranslatorInput () {
       </section>
       <textarea
         placeholder='Write your text here...'
+        value={toTranslateNoDebounce}
         maxLength={maxCharacters}
         autoCapitalize='off'
         autoComplete='off'

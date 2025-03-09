@@ -5,6 +5,7 @@ export const TranslatorContext = createContext()
 const API_URL = 'https://api.mymemory.translated.net'
 
 function TranslatorProvider ({ children }) {
+  const [toTranslateNoDebounce, setToTranslateNoDebounce] = useState('')
   const [toTranslate, setToTranslate] = useState('')
   const [translation, setTranslation] = useState('')
   const [toTranslateLang, setToTranslateLang] = useState('autodetect')
@@ -37,6 +38,8 @@ function TranslatorProvider ({ children }) {
 
   return (
     <TranslatorContext.Provider value={{
+      toTranslateNoDebounce,
+      setToTranslateNoDebounce,
       toTranslate,
       setToTranslate,
       translation,
