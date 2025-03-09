@@ -15,6 +15,16 @@
   --default-font-family: 'Inter', sans-serif;
 }
 
+@utility gradient-line {
+  content: "";
+  background: linear-gradient(90deg, #0000, #222, #0000);
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .lang-button {
   @apply px-4 py-2 rounded-xl font-semibold border-2 border-transparent hover:border-accent hover:cursor-pointer transition-colors;
 }
