@@ -1,5 +1,6 @@
 import Language from '../icons/Language'
 import Moon from '../icons/Moon'
+import Document from '../icons/Document'
 
 function Header () {
   return (
@@ -8,7 +9,11 @@ function Header () {
         <Language className='size-7 stroke-2' />
         <span>NeoTranslator</span>
       </h1>
-      <section>
+      <section className='flex gap-3'>
+        <a href='https://mymemory.translated.net/doc/spec.php' target='_blank' className='action-button-white flex items-center gap-1' rel='noreferrer' disabled>
+          <Document className='size-5' />
+          <span>API</span>
+        </a>
         <button className='action-button' disabled>
           <Moon className='size-5' />
         </button>
