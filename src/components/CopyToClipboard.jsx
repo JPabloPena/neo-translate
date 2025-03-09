@@ -3,7 +3,7 @@ import Copy from '../icons/Copy'
 import DocumentCheck from '../icons/DocumentCheck'
 import copyToClipboard from '../utils/copyToClipboard'
 
-function CopyToClipboard ({ text }) {
+function CopyToClipboard ({ text, disabled }) {
   const [isSuccess, setIsSuccess] = useState(false)
 
   const handleButtonClick = () => {
@@ -25,7 +25,7 @@ function CopyToClipboard ({ text }) {
           </button>
           )
         : (
-          <button className='action-button' onClick={handleButtonClick}>
+          <button className='action-button' onClick={handleButtonClick} disabled={disabled}>
             <Copy className='size-5' />
           </button>
           )}

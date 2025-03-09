@@ -4,9 +4,10 @@ import ChevronDown from '../icons/ChevronDown'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
 import CopyToClipboard from './CopyToClipboard'
+import Loader from './Loader/Loader'
 
 function TranslatorOutput () {
-  const { setToTranslateNoDebounce, translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
+  const { setToTranslateNoDebounce, translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang, isLoading } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState('btn-to-es')
   const selectRef = useRef(null)
 
@@ -73,17 +74,23 @@ function TranslatorOutput () {
           <Exchange className='size-5' />
         </button>
       </section>
-      <textarea
-        disabled
-        value={translation}
-        className={`w-full h-full pt-4 mb-4 text-2xl resize-none ${translation.length > 0 ? 'hover:cursor-text' : 'hover:cursor-default'}`}
-      />
+      <section className='h-full'>
+        {isLoading
+          ? <Loader />
+          : (
+            <textarea
+              disabled
+              value={translation}
+              className={`w-full h-full pt-4 mb-4 text-2xl resize-none ${translation.length > 0 ? 'hover:cursor-text' : 'hover:cursor-default'}`}
+            />
+            )}
+      </section>
       <section>
         <div className='flex gap-2.5'>
           <button className='action-button' disabled>
             <SpeakerWave className='size-5' />
           </button>
-          <CopyToClipboard text={translation} />
+          <CopyToClipboard text={translation} disabled={isLoading} />
         </div>
       </section>
     </div>

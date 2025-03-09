@@ -39,7 +39,7 @@
 }
 
 .action-button-white {
-  @apply px-2 py-1.5 rounded-xl font-semibold border-1 bg-primary text-custom-black border-primary opacity-80 h-fit hover:cursor-pointer hover:bg-primary/90 transition-colors;
+  @apply px-2 py-1.5 rounded-xl font-semibold border-1 bg-primary text-custom-black border-primary h-fit hover:cursor-pointer hover:bg-primary/90 transition-colors;
 }
 
 .success-button {

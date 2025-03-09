@@ -10,6 +10,7 @@ function TranslatorProvider ({ children }) {
   const [translation, setTranslation] = useState('')
   const [toTranslateLang, setToTranslateLang] = useState('autodetect')
   const [translationLang, setTranslationLang] = useState('es')
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function fetchTranslation () {
@@ -17,6 +18,8 @@ function TranslatorProvider ({ children }) {
         setTranslation('')
         return
       }
+
+      setIsLoading(true)
 
       const encodedQuery = encodeURIComponent(toTranslate)
       const response = await fetch(`${API_URL}/get?q=${encodedQuery}&langpair=${toTranslateLang}|${translationLang}`)
@@ -31,6 +34,8 @@ function TranslatorProvider ({ children }) {
         const { responseData: { detectedLanguage } } = translationData
         setToTranslateLang(detectedLanguage)
       }
+
+      setIsLoading(false)
     }
 
     fetchTranslation()
@@ -46,7 +51,8 @@ function TranslatorProvider ({ children }) {
       toTranslateLang,
       setToTranslateLang,
       translationLang,
-      setTranslationLang
+      setTranslationLang,
+      isLoading
     }}
     >
       {children}
