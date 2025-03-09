@@ -1,9 +1,9 @@
 import SpeakerWave from '../icons/SpeakerWave'
-import Copy from '../icons/Copy'
 import Exchange from '../icons/Exchange'
 import ChevronDown from '../icons/ChevronDown'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { TranslatorContext } from '../context/Translator'
+import CopyToClipboard from './CopyToClipboard'
 
 function TranslatorOutput () {
   const { translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
@@ -78,9 +78,7 @@ function TranslatorOutput () {
           <button className='action-button' disabled>
             <SpeakerWave className='size-5' />
           </button>
-          <button className='action-button' disabled>
-            <Copy className='size-5' />
-          </button>
+          <CopyToClipboard text={translation} />
         </div>
       </section>
     </div>
