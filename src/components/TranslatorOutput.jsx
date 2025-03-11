@@ -56,9 +56,9 @@ function TranslatorOutput () {
   }, [translationLang])
 
   return (
-    <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
+    <div className='h-96 w-full max-w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
       <section className='flex justify-between items-center border-b-1 border-accent pb-3'>
-        <div className='flex gap-5'>
+        <div className='flex items-center gap-5 lg:h-[68px] xl:h-auto'>
           <button id='btn-to-en' className={`lang-button ${activeLangButton === 'btn-to-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
           <button id='btn-to-es' className={`lang-button ${activeLangButton === 'btn-to-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
           <div className='relative items-center'>

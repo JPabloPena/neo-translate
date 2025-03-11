@@ -14,6 +14,9 @@
   --color-placeholder: #888888;
 
   --default-font-family: 'Inter', sans-serif;
+
+  --breakpoint-lg: 1162px;
+  --breakpoint-xl: 1272px;
 }
 
 @utility gradient-line {

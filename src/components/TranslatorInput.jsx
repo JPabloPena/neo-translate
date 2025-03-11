@@ -57,8 +57,8 @@ function TranslatorInput () {
   }, [toTranslateLang])
 
   return (
-    <div className='h-96 w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
-      <section className='flex gap-5 border-b-1 border-accent pb-3'>
+    <div className='h-96 w-full max-w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
+      <section className='flex items-center gap-5 border-b-1 border-accent pb-3'>
         <button id='btn-from-autodetect' className={`lang-button ${activeLangButton === 'btn-from-autodetect' ? activeLanguageClass : ''}`} value='autodetect' onClick={handleActiveLanguage}>Detect Language</button>
         <button id='btn-from-en' className={`lang-button ${activeLangButton === 'btn-from-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
         <button id='btn-from-es' className={`lang-button ${activeLangButton === 'btn-from-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
