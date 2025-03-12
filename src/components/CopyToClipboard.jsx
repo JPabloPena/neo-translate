@@ -21,12 +21,12 @@ function CopyToClipboard ({ text, disabled }) {
       {isSuccess
         ? (
           <button className='success-button'>
-            <DocumentCheck className='size-5' />
+            <DocumentCheck className='size-4 md:size-5' />
           </button>
           )
         : (
           <button className='action-button' onClick={handleButtonClick} disabled={disabled}>
-            <Copy className='size-5' />
+            <Copy className='size-4 md:size-5' />
           </button>
           )}
     </>

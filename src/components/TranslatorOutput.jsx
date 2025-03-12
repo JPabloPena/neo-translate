@@ -10,6 +10,7 @@ function TranslatorOutput () {
   const { setToTranslateNoDebounce, translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang, isLoading } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState('btn-to-es')
   const selectRef = useRef(null)
+  const textareaRef = useRef(null)
 
   const activeLanguageClass = 'bg-accent'
   const selectOptions = ['btn-to-fr', 'btn-to-ca']
@@ -55,9 +56,19 @@ function TranslatorOutput () {
     }
   }, [translationLang])
 
+  useEffect(() => {
+    // Dynamically adjust textarea height
+    if (textareaRef.current) {
+      if (translation.trim() === '') {
+        textareaRef.current.style.height = '100%'
+      }
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    }
+  }, [translation])
+
   return (
-    <div className='h-96 w-full max-w-[620px] bg-bg-secondary border-1 border-accent rounded-2xl p-5 text-white flex flex-col transition'>
-      <section className='flex justify-between items-center border-b-1 border-accent pb-3'>
+    <div className={`${isLoading || (translation !== '') ? 'block' : 'hidden'} md:flex md:h-96 w-full max-w-[620px] bg-bg-secondary md:border-1 border-accent md:rounded-2xl p-5 text-white flex flex-col transition`}>
+      <section className='hidden md:flex justify-between items-center border-b-1 border-accent pb-3'>
         <div className='flex items-center gap-5 lg:h-[68px] xl:h-auto'>
           <button id='btn-to-en' className={`lang-button ${activeLangButton === 'btn-to-en' ? activeLanguageClass : ''}`} value='en' onClick={handleActiveLanguage}>English</button>
           <button id='btn-to-es' className={`lang-button ${activeLangButton === 'btn-to-es' ? activeLanguageClass : ''}`} value='es' onClick={handleActiveLanguage}>Spanish</button>
@@ -74,21 +85,22 @@ function TranslatorOutput () {
           <Exchange className='size-5' />
         </button>
       </section>
-      <section className='h-full'>
+      <section className='min-h-[102px] md:h-full'>
         {isLoading
           ? <Loader />
           : (
             <textarea
               disabled
+              ref={textareaRef}
               value={translation}
-              className={`w-full h-full pt-4 mb-4 text-2xl resize-none ${translation.length > 0 ? 'hover:cursor-text' : 'hover:cursor-default'}`}
+              className={`w-full md:h-full pt-4 mb-4 text-2xl resize-none ${translation.length > 0 ? 'hover:cursor-text' : 'hover:cursor-default'}`}
             />
             )}
       </section>
       <section>
         <div className='flex gap-2.5'>
           <button className='action-button' disabled>
-            <SpeakerWave className='size-5' />
+            <SpeakerWave className='size-4 md:size-5' />
           </button>
           <CopyToClipboard text={translation} disabled={isLoading} />
         </div>
