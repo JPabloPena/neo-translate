@@ -48,3 +48,7 @@
 .success-button {
   @apply p-2 rounded-xl font-semibold border-1 bg-bg-success border-success text-success opacity-80 h-fit hover:cursor-pointer transition-colors;
 }
+
+.delete-button {
+  @apply p-2 rounded-xl font-semibold border-1 border-transparent opacity-80 h-fit hover:cursor-pointer hover:bg-accent hover:border-accent transition-colors disabled:opacity-25 disabled:hover:bg-transparent;
+}

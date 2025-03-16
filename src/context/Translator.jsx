@@ -62,6 +62,7 @@ function TranslatorProvider ({ children }) {
       toTranslate,
       setToTranslate,
       translation,
+      setTranslation,
       toTranslateLang,
       setToTranslateLang,
       translationLang,

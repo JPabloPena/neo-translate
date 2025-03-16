@@ -5,9 +5,10 @@ import { TranslatorContext } from '../context/Translator'
 import debounce from 'just-debounce-it'
 import CopyToClipboard from './CopyToClipboard'
 import Exchange from '../icons/Exchange'
+import XMark from '../icons/XMark'
 
 function TranslatorInput () {
-  const { toTranslateNoDebounce, setToTranslateNoDebounce, toTranslate, setToTranslate, translation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
+  const { toTranslateNoDebounce, setToTranslateNoDebounce, toTranslate, setToTranslate, translation, setTranslation, toTranslateLang, setToTranslateLang, translationLang, setTranslationLang } = useContext(TranslatorContext)
   const [activeLangButton, setActiveLangButton] = useState(`btn-from-${toTranslateLang}`)
   const [translationLength, setTranslationLength] = useState(0)
   const selectRef = useRef(null)
@@ -72,6 +73,12 @@ function TranslatorInput () {
     setToTranslateNoDebounce(currentTranslation)
   }
 
+  const handleDeleteTextButton = () => {
+    setToTranslateNoDebounce('')
+    setToTranslate('')
+    setTranslation('')
+  }
+
   useEffect(() => {
     setActiveLangButton(`btn-from-${toTranslateLang}`)
     if (selectOptions.includes(`btn-from-${toTranslateLang}`)) {
@@ -101,17 +108,22 @@ function TranslatorInput () {
         </button>
         <button className='w-full'>Spanish</button>
       </section>
-      <textarea
-        ref={textareaRef}
-        placeholder='Write your text here...'
-        value={toTranslateNoDebounce}
-        maxLength={maxCharacters}
-        autoCapitalize='off'
-        autoComplete='off'
-        autoCorrect='off'
-        className='w-full md:h-full pt-4 mb-4 text-2xl focus:outline-none resize-none'
-        onChange={handleTextareaChange}
-      />
+      <section className='flex gap-1 h-full pt-4 mb-4'>
+        <textarea
+          ref={textareaRef}
+          placeholder='Write your text here...'
+          value={toTranslateNoDebounce}
+          maxLength={maxCharacters}
+          autoCapitalize='off'
+          autoComplete='off'
+          autoCorrect='off'
+          className='w-full md:h-full text-2xl focus:outline-none resize-none'
+          onChange={handleTextareaChange}
+        />
+        <button className={`delete-button self-start ${toTranslateNoDebounce ? '' : 'hidden'}`} onClick={handleDeleteTextButton}>
+          <XMark className='size-4 md:size-5' />
+        </button>
+      </section>
       <section className='flex justify-between items-center'>
         <div className='flex gap-2.5'>
           <button className='action-button' disabled>
