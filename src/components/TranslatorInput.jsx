@@ -77,6 +77,7 @@ function TranslatorInput () {
     setToTranslateNoDebounce('')
     setToTranslate('')
     setTranslation('')
+    setTranslationLength(0)
   }
 
   useEffect(() => {
